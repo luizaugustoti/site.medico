@@ -1,15 +1,81 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;              /* garante altura total */
+    width: 100%;               /* garante largura total */
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background: #f9f9f9;
+    color: #333;
+}
+
+/* Navbar */
+.navbar {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color:#007bff;
+}
+
+.logo-icon {
+    color: #007bff;
+    margin-right: 5px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-green {
+    background: #28a745;
+    color: #fff;
+}
+
+.btn-blue {
+    background: #007bff;
+    color: #fff;
+}
+
 /* Hero Section */
 .hero {
     position: relative;
-    width: 100%;              /* ocupa toda a largura */
-    height: 100vh;            /* ocupa toda a altura da janela */
+    width: 100vw;              /* largura total da viewport */
+    height: 100vh;             /* altura total da viewport */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
 
     background: url("Imagens/image001.png") no-repeat center center;
-    background-size: cover;   /* cobre toda a área */
+    background-size: cover;    /* cobre toda a área */
     color: #fff;
 }
 
@@ -17,7 +83,7 @@
 .hero::before {
     content: "";
     position: absolute;
-    inset: 0;                 /* cobre toda a seção */
+    inset: 0;
     background: rgba(0,0,0,0.5);
 }
 
@@ -33,7 +99,7 @@
 .hero-content h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
-    color: #fff; /* branco para contraste */
+    color: #fff;
 }
 
 .btn-blue {
@@ -43,4 +109,17 @@
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .hero-content {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
 }
