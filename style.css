@@ -31,7 +31,7 @@ header nav a {
   align-items: center;   /* centraliza verticalmente */
   justify-content: flex-start; /* texto alinhado à esquerda */
   height: 400px;
-  background: url("/Imagens/image001.png") no-repeat center/cover;
+  background: url("Imagens/image001.png") no-repeat center/cover;
   padding-left: 50px;    /* espaço da margem esquerda */
 }
 
