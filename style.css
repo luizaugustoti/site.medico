@@ -1,1 +1,48 @@
+/* Reset básico */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background: #f9f9f9;
+    color:#333;
+
+}
+
+/* Navbar*/
+
+.navbar{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color:#007bff;
+
+}
+.logo-icon{
+    color: #007bff;
+    margin-right: 5px;
+}
+.navbar ul{
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
 
