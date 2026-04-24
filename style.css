@@ -1,72 +1,8 @@
-/* Reset básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background: #f9f9f9;
-    color: #333;
-}
-
-/* Navbar */
-.navbar {
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background: #fff;
-    border-bottom: 1px solid #ddd;
-}
-
-.logo {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color:#007bff;
-}
-
-.logo-icon {
-    color: #007bff;
-    margin-right: 5px;
-}
-
-.navbar ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-.navbar a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-}
-
-.btn {
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.btn-green {
-    background: #28a745;
-    color: #fff;
-}
-
-.btn-blue {
-    background: #007bff;
-    color: #fff;
-}
-
 /* Hero Section */
 .hero {
     position: relative;
     width: 100%;              /* ocupa toda a largura */
-    min-height: 100vh;        /* ocupa toda a altura da janela */
+    height: 100vh;            /* ocupa toda a altura da janela */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -107,31 +43,4 @@ body {
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
-}
-
-.hero-image img {
-    max-width: 400px;
-    border-radius: 10px;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .hero {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .hero-content {
-        max-width: 100%;
-        margin-bottom: 20px;
-    }
-
-    .hero-image img {
-        max-width: 100%;
-    }
-
-    .navbar {
-        flex-direction: column;
-        gap: 15px;
-    }
 }
