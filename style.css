@@ -80,7 +80,7 @@ body{
 
 }
 .hero-image img{
-    max-width: 400px;
+    max-width: 100px;
     border-radius: 10px;
 }
 /* Responsividade */
