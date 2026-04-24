@@ -1,46 +1,73 @@
-/* Hero Section */
-.hero {
-    position: relative;
-    width: 100vw;              /* largura total da viewport */
-    height: 100vh;             /* altura total da viewport */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-
-    background: url("Imagens/image001.png") no-repeat center center;
-    background-size: cover;    /* cobre toda a área */
-    color: #fff;
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f9f9f9;
+  color: #333;
 }
 
-/* Overlay para escurecer a imagem */
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #83b6f8;
+  color: rgb(17, 10, 117);
+  padding: 15px;
 }
 
-/* Conteúdo acima do overlay */
-.hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 800px;
-    padding: 20px;
-    border-radius: 8px;
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
 }
 
-.hero-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: #fff;
+header nav a {
+  color: rgb(17, 10, 117);
+  text-decoration: none;
 }
 
-.btn-blue {
-    background: #007bff;
-    color: #fff;
-    padding: 12px 24px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
+.banner {
+  position: relative;
+  display: flex;
+  align-items: center;   /* centraliza verticalmente */
+  justify-content: flex-start; /* texto alinhado à esquerda */
+  height: 400px;
+  background: url('/Imagens/image001.png') no-repeat center/cover;
+  padding-left: 50px;    /* espaço da margem esquerda */
+}
+
+.banner h1 {
+  font-size: 36px;       /* tamanho da fonte */
+  color: #003366;        /* azul escuro para contraste */
+  max-width: 400px;      /* largura máxima do bloco de texto */
+  line-height: 1.4;      /* espaçamento entre linhas */
+  font-weight: bold;
+}
+
+.banner .btn-primario {
+  display: inline-block;
+  margin-top: 20px;
+  background: #007bff;   /* azul do botão */
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+section {
+  padding: 40px 20px;
+}
+
+.cards, .medicos {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card, .medico {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
