@@ -1,46 +1,45 @@
 /* Reset básico */
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-body{
+
+body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     background: #f9f9f9;
-    color:#333;
-
+    color: #333;
 }
 
-/* Navbar*/
-
-.navbar{
+/* Navbar */
+.navbar {
     display:flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
     background: #fff;
     border-bottom: 1px solid #ddd;
-
 }
 
 .logo {
     font-size: 1.2rem;
     font-weight: bold;
     color:#007bff;
-
 }
-.logo-icon{
+
+.logo-icon {
     color: #007bff;
     margin-right: 5px;
 }
-.navbar ul{
+
+.navbar ul {
     list-style: none;
     display: flex;
     gap: 20px;
 }
 
-.navbar a{
+.navbar a {
     text-decoration: none;
     color: #333;
     font-weight: 500;
@@ -51,53 +50,78 @@ body{
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
-
 }
-.btn-green{
+
+.btn-green {
     background: #28a745;
     color: #fff;
 }
-.btn-blue{
+
+.btn-blue {
     background: #007bff;
     color: #fff;
 }
-/* Hero Section */
 
+/* Hero Section */
 .hero {
+    position: relative;
+    min-height: 500px; /* altura mínima */
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 60px 40px;
-    background: #eef6fb;
+    justify-content: center;
+    text-align: center;
+
+    background: url("Imagens/image001.png") no-repeat center center;
+    background-size: cover;
+    color: #fff;
 }
-.hero-content{
-    max-width: 50%;
+
+/* Overlay para escurecer a imagem */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
 }
+
+/* Conteúdo acima do overlay */
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    padding: 20px;
+    border-radius: 8px;
+}
+
 .hero-content h1 {
     font-size: 2rem;
     margin-bottom: 20px;
-    color: #007bff;
-
+    color: #fff; /* branco para contraste */
 }
-.hero-image img{
-    max-width: 100px;
 
+.hero-image img {
+    max-width: 400px;
+    border-radius: 10px;
 }
+
 /* Responsividade */
-@media (max-wdth: 768px){
-    .hero{
+@media (max-width: 768px) {
+    .hero {
         flex-direction: column;
         text-align: center;
     }
+
     .hero-content {
         max-width: 100%;
         margin-bottom: 20px;
     }
+
     .hero-image img {
         max-width: 100%;
     }
-    .navbar{
-        flex-direction:column;
+
+    .navbar {
+        flex-direction: column;
         gap: 15px;
     }
 }
