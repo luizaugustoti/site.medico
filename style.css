@@ -81,7 +81,7 @@ body{
 }
 .hero-image img{
     max-width: 100px;
-    border-radius: 10px;
+
 }
 /* Responsividade */
 @media (max-wdth: 768px){
