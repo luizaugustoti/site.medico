@@ -1,29 +1,82 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: #f9f9f9;
-  color: #333;
+/* Barra azul superior */
+.barra-azul {
+  background: #64a2dd69; /* mesmo tom do banner */
+  height: 18px;        /* altura da faixa azul */
+  width: 100%;
 }
 
-header {
+/* Barra branca com menu */
+.barra-branca {
   display: flex;
-  justify-content: space-between;
+  grid-template-columns: 1fr auto 1fr; /* logo / menu / botão */
   align-items: center;
-  background: #83b6f8;
-  color: rgb(17, 10, 117);
-  padding: 15px;
+  background: #ffffff; /* fundo branco */
+  padding: 0px 25px;
+  height: 45px; 
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* leve sombra */
+  justify-content: space-between;
 }
 
-header nav ul {
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #003366;
+  justify-self: start;
+}
+
+.logo img {
+  width: 26px;
+  height: auto;
+  margin-left: 25%;
+}
+
+.logo span {
+  font-size: 20px; /* fonte menor */
+}
+
+/* Menu central */
+.menu ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+
 }
 
-header nav a {
-  color: rgb(17, 10, 117);
+.menu a {
   text-decoration: none;
+  color: #003366;
+  font-weight: 500;
+  transition: color 0.3s;
+  font-size: 14px;
 }
+
+.menu a:hover {
+  color: #007bff;
+}
+
+/* Botão verde à direita */
+.btn-consulta {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+  justify-self: end;
+}
+
+.btn-consulta:hover {
+  background: #218838;
+}
+
 
 .banner {
   position: relative;
