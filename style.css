@@ -27,7 +27,6 @@ header nav a {
 
 .banner {
   position: relative;
-  display: flex;
   align-items: center;   /* centraliza verticalmente */
   justify-content: flex-start; /* texto alinhado à esquerda */
   height: 400px;
