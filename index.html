@@ -11,25 +11,12 @@
 
   <!-- ════════ NAVBAR ════════ -->
   <nav class="navbar">
-
-    <!--
-      navbar__container é o "miolo" da barra.
-      Ele tem largura máxima e fica centralizado.
-      A barra branca continua 100% da tela.
-    -->
     <div class="navbar__container">
 
-      <!-- Logo -->
       <a href="#" class="navbar__logo">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-          <circle cx="14" cy="14" r="14" fill="#1a5fa8"/>
-          <rect x="12" y="6" width="4" height="16" rx="2" fill="white"/>
-          <rect x="6" y="12" width="16" height="4" rx="2" fill="white"/>
-        </svg>
-        Clínica Médica
+        <img src="logo.svg" alt="Clínica Médica" height="45"/>
       </a>
 
-      <!-- Links de navegação -->
       <ul class="navbar__links">
         <li><a href="#">Início</a></li>
         <li><a href="#">Sobre Nós</a></li>
@@ -37,22 +24,39 @@
         <li><a href="#">Profissionais</a></li>
       </ul>
 
-      <!-- Botão CTA -->
       <button class="navbar__cta">Agende sua Consulta</button>
 
     </div>
   </nav>
 
-  <!-- ════════ HERO ════════ -->
+  <!-- ════════ HERO / BANNER ════════ -->
   <section class="hero">
-    <div class="hero__text">
-      <h1>Cuidando da sua saúde<br>com dedicação e confiança</h1>
-      <button class="hero__cta">Agende sua Consulta</button>
-      <img src="Imagens/image001.png" alt="Médica e paciente"/>
+    <div class="hero__container">
+
+      <!-- Lado esquerdo: texto + botão -->
+      <div class="hero__texto">
+        <h1>Cuidando da sua saúde<br>com dedicação e confiança</h1>
+        <button class="hero__cta">Agende sua Consulta</button>
+      </div>
+
+      <!-- Lado direito: foto da médica e paciente -->
+      <!--
+        ATENÇÃO: troque "banner.png" pelo nome exato
+        do seu arquivo de imagem. Exemplos:
+          src="medica.jpg"
+          src="foto-banner.png"
+          src="imagens/banner.jpg"  ← se estiver numa pasta
+        O arquivo deve estar na mesma pasta do index.html!
+      -->
+      <div class="hero__imagem">
+        <img src="banner.png" alt="Médica e paciente"/>
+      </div>
+
     </div>
   </section>
 
 </body>
+</html>
 </html>
 
   <!-- Sobre a Clínica -->

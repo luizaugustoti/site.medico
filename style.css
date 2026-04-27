@@ -7,9 +7,6 @@
   padding: 0;
 }
 
-/* ══════════════════════════════════════
-   BODY
-══════════════════════════════════════ */
 body {
   font-family: 'Lato', sans-serif;
   background: #f0f4f8;
@@ -17,8 +14,7 @@ body {
 
 
 /* ══════════════════════════════════════
-   NAVBAR — ocupa 100% da largura da tela
-   A cor branca e a sombra se estendem até as bordas
+   NAVBAR
 ══════════════════════════════════════ */
 .navbar {
   background: #ffffff;
@@ -26,45 +22,20 @@ body {
   height: 70px;
 }
 
-
-/* ══════════════════════════════════════
-   NAVBAR__CONTAINER — "miolo" centralizado
-   Aqui ficam logo + links + botão.
-   max-width limita a largura do conteúdo.
-   margin: 0 auto centraliza na tela.
-   padding cria o espaço nas laterais (o que você viu na imagem).
-══════════════════════════════════════ */
 .navbar__container {
-  max-width: 1100px;       /* largura máxima do conteúdo */
-  margin: 0 auto;          /* centraliza horizontalmente na tela */
-  padding: 0 40px;         /* espaço nas laterais esquerda e direita */
-  height: 100%;            /* ocupa a altura total da navbar */
-
-  display: flex;           /* coloca logo, links e botão em linha */
-  align-items: center;     /* alinha verticalmente ao centro */
-  justify-content: space-between; /* logo à esq, botão à dir */
-}
-
-
-/* ══════════════════════════════════════
-   LOGO
-══════════════════════════════════════ */
-.navbar__logo {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px;
+  height: 100%;
   display: flex;
   align-items: center;
-  gap: 10px;
-
-  text-decoration: none;
-  color: #1a5fa8;
-  font-size: 1.2rem;
-  font-weight: 700;
-  white-space: nowrap;
+  justify-content: space-between;
 }
 
+.navbar__logo img {
+  display: block; /* remove espaço extra que o navegador coloca embaixo de imagens */
+}
 
-/* ══════════════════════════════════════
-   LINKS DE NAVEGAÇÃO
-══════════════════════════════════════ */
 .navbar__links {
   display: flex;
   align-items: center;
@@ -77,7 +48,6 @@ body {
   color: #333;
   font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
   transition: color 0.2s;
 }
 
@@ -85,10 +55,6 @@ body {
   color: #1a5fa8;
 }
 
-
-/* ══════════════════════════════════════
-   BOTÃO CTA
-══════════════════════════════════════ */
 .navbar__cta {
   background: #2a9d6e;
   color: #ffffff;
@@ -109,22 +75,38 @@ body {
 
 
 /* ══════════════════════════════════════
-   HERO
+   HERO — banner principal
 ══════════════════════════════════════ */
 .hero {
   background: linear-gradient(120deg, #d6e8f7 0%, #e8f4fb 60%, #cce4f0 100%);
-  padding: 60px 40px;
-  display: flex;
-  align-items: center;
-  min-height: 220px;
+  min-height: 320px;
 }
 
-.hero__text h1 {
+/* Container interno do hero — igual ao da navbar */
+.hero__container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px;
+  height: 100%;
+  min-height: 320px;
+
+  display: flex;            /* coloca texto e imagem lado a lado */
+  align-items: center;      /* alinha verticalmente ao centro */
+  justify-content: space-between; /* texto à esq, foto à dir */
+  gap: 40px;
+}
+
+/* ── Lado esquerdo: texto ── */
+.hero__texto {
+  flex: 1;                  /* ocupa o espaço disponível */
+  max-width: 460px;
+}
+
+.hero__texto h1 {
   font-size: 2rem;
   color: #1a3d6b;
-  line-height: 1.3;
-  max-width: 420px;
-  margin-bottom: 28px;
+  line-height: 1.4;
+  margin-bottom: 32px;
 }
 
 .hero__cta {
@@ -136,13 +118,25 @@ body {
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.1s;
 }
 
-css.hero__imagem img {
-  max-height: 300px;   /* ← aumente ou diminua a altura da foto */
-  object-fit: contain; /* mantém a proporção sem cortar */
-}
 .hero__cta:hover {
   background: #154d8c;
+  transform: translateY(-1px);
+}
+
+/* ── Lado direito: imagem ── */
+.hero__imagem {
+  flex: 1;                  /* ocupa o mesmo espaço que o texto */
+  display: flex;
+  justify-content: flex-end; /* empurra a foto para a direita */
+  align-items: flex-end;     /* alinha a foto na base do banner */
+}
+
+.hero__imagem img {
+  max-height: 300px;        /* altura máxima da foto */
+  max-width: 100%;          /* nunca ultrapassa o container */
+  object-fit: contain;      /* mantém a proporção original */
+  display: block;
 }
