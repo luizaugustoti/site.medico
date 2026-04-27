@@ -40,14 +40,6 @@
       </div>
 
       <!-- Lado direito: foto da médica e paciente -->
-      <!--
-        ATENÇÃO: troque "banner.png" pelo nome exato
-        do seu arquivo de imagem. Exemplos:
-          src="medica.jpg"
-          src="foto-banner.png"
-          src="imagens/banner.jpg"  ← se estiver numa pasta
-        O arquivo deve estar na mesma pasta do index.html!
-      -->
       <div class="hero__imagem">
         <img src="banner.png" alt="Médica e paciente"/>
       </div>
@@ -55,85 +47,104 @@
     </div>
   </section>
 
-</body>
-</html>
-</html>
-
-  <!-- Sobre a Clínica -->
-  <section id="sobre">
-    <h2>Sobre a Clínica</h2>
-    <div class="cards">
-      <div class="card">Confiança & Cuidado</div>
-      <div class="card">Tecnologia Avançada</div>
-      <div class="card">Atendimento Humanizado</div>
+  <!-- ════════ SOBRE A CLÍNICA ════════ -->
+  <section id="sobre" class="secao">
+    <div class="secao__container">
+      <h2>Sobre a Clínica</h2>
+      <div class="cards">
+        <div class="card">Confiança &amp; Cuidado</div>
+        <div class="card">Tecnologia Avançada</div>
+        <div class="card">Atendimento Humanizado</div>
+      </div>
     </div>
   </section>
 
-  <!-- Especialidades -->
-  <section id="especialidades">
-    <h2>Nossas Especialidades</h2>
-    <div class="medicos">
-      <div class="medico">Dr. Carlos Silva – Cardiologista</div>
-      <div class="medico">Dra. Ana Ribeiro – Pediatra</div>
-      <div class="medico">Dr. Marcos Oliveira – Ortopedista</div>
-      <div class="medico">Dra. Patricia Souza – Dermatologista</div>
+  <!-- ════════ ESPECIALIDADES ════════ -->
+  <section id="especialidades" class="secao secao--cinza">
+    <div class="secao__container">
+      <h2>Nossas Especialidades</h2>
+      <div class="medicos">
+        <div class="medico">Dr. Carlos Silva – Cardiologista</div>
+        <div class="medico">Dra. Ana Ribeiro – Pediatra</div>
+        <div class="medico">Dr. Marcos Oliveira – Ortopedista</div>
+        <div class="medico">Dra. Patricia Souza – Dermatologista</div>
+      </div>
     </div>
   </section>
 
-  <!-- Agendamento -->
-  <section>
-    <form action="/agendar" method="post">
-        <fieldset>
-            <legend>Agendamento</legend>
+  <!-- ════════ AGENDAMENTO ════════ -->
+  <section id="agendamento" class="secao">
+    <div class="secao__container">
+      <h2>Agendamento</h2>
+      <form action="/agendar" method="post" class="formulario">
 
-            <label for="nome">Nome Completo:</label>
-            <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+        <div class="formulario__grupo">
+          <label for="nome">Nome Completo</label>
+          <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+        </div>
 
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+        <div class="formulario__grupo">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+        </div>
 
-            <label for="telefone">Telefone:</label>
-            <input type="tel" id="telefone" name="telefone" placeholder="(99) 99999-9999" required>
-        </fieldset>
+        <div class="formulario__grupo">
+          <label for="telefone">Telefone</label>
+          <input type="tel" id="telefone" name="telefone" placeholder="(99) 99999-9999" required>
+        </div>
 
-        <fieldset>
-            
-            <label for="especialidade">Especialidade:</label>
-            <select id="especialidade" name="especialidade" required>
-                <option value="">Selecione...</option>
-                <option value="clinico">Clínico Geral</option>
-                <option value="cardiologia">Cardiologia</option>
-                <option value="dermatologia">Dermatologia</option>
-                <option value="ginecologia">Ginecologia</option>
-            </select>
+        <div class="formulario__grupo">
+          <label for="especialidade">Especialidade</label>
+          <select id="especialidade" name="especialidade" required>
+            <option value="">Selecione...</option>
+            <option value="clinico">Clínico Geral</option>
+            <option value="cardiologia">Cardiologia</option>
+            <option value="dermatologia">Dermatologia</option>
+            <option value="ginecologia">Ginecologia</option>
+          </select>
+        </div>
 
-            <label for="data">Data da Consulta:</label>
-            <input type="date" id="data" name="data" required min="<?= date('Y-m-d') ?>">
+        <div class="formulario__grupo">
+          <label for="data">Data da Consulta</label>
+          <input type="date" id="data" name="data" required>
+        </div>
 
-            <label for="hora">Horário:</label>
-            <input type="time" id="hora" name="hora" required>
+        <div class="formulario__grupo">
+          <label for="hora">Horário</label>
+          <input type="time" id="hora" name="hora" required>
+        </div>
 
-            <label for="observacoes">Observações:</label>
-            <textarea id="observacoes" name="observacoes" rows="4" placeholder="Informações adicionais"></textarea>
-        </fieldset>
+        <div class="formulario__grupo formulario__grupo--largo">
+          <label for="observacoes">Observações</label>
+          <textarea id="observacoes" name="observacoes" rows="4" placeholder="Informações adicionais"></textarea>
+        </div>
 
-        <button type="submit">Agendar</button>
-    </form>
-</section>
+        <div class="formulario__grupo formulario__grupo--largo">
+          <button type="submit" class="formulario__btn">Agendar Consulta</button>
+        </div>
 
-  <!-- Depoimentos -->
-  <section id="depoimentos">
-    <h2>Depoimentos de Pacientes</h2>
-    <blockquote>“Ótimo atendimento e profissionais muito atenciosos!” – Maria F.</blockquote>
+      </form>
+    </div>
   </section>
 
-  <!-- Rodapé -->
-  <footer>
-    <p>Rua Exemplo, 123 – Cidade – Estado</p>
-    <p>Tel: (11) 1234-5678 | (11) 98765-4321</p>
-    <p>Email: contato@clinicamedica.com</p>
+  <!-- ════════ DEPOIMENTOS ════════ -->
+  <section id="depoimentos" class="secao secao--cinza">
+    <div class="secao__container">
+      <h2>Depoimentos de Pacientes</h2>
+      <blockquote class="depoimento">
+        "Ótimo atendimento e profissionais muito atenciosos!" – Maria F.
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ════════ RODAPÉ ════════ -->
+  <footer class="rodape">
+    <div class="secao__container">
+      <p>Rua Exemplo, 123 – Cidade – Estado</p>
+      <p>Tel: (11) 1234-5678 | (11) 98765-4321</p>
+      <p>Email: contato@clinicamedica.com</p>
+    </div>
   </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>

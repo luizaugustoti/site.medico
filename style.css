@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════
-   RESET BÁSICO
+   RESET
 ══════════════════════════════════════ */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -9,7 +9,19 @@
 
 body {
   font-family: 'Lato', sans-serif;
-  background: #f0f4f8;
+  color: #333;
+  background: #ffffff;
+}
+
+
+/* ══════════════════════════════════════
+   UTILITÁRIO — container centralizado
+   Usado em todas as seções
+══════════════════════════════════════ */
+.secao__container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px;
 }
 
 
@@ -18,7 +30,7 @@ body {
 ══════════════════════════════════════ */
 .navbar {
   background: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   height: 70px;
 }
 
@@ -33,7 +45,7 @@ body {
 }
 
 .navbar__logo img {
-  display: block; /* remove espaço extra que o navegador coloca embaixo de imagens */
+  display: block;
 }
 
 .navbar__links {
@@ -51,13 +63,11 @@ body {
   transition: color 0.2s;
 }
 
-.navbar__links a:hover {
-  color: #1a5fa8;
-}
+.navbar__links a:hover { color: #1a5fa8; }
 
 .navbar__cta {
   background: #2a9d6e;
-  color: #ffffff;
+  color: #fff;
   border: none;
   padding: 10px 20px;
   border-radius: 6px;
@@ -79,26 +89,23 @@ body {
 ══════════════════════════════════════ */
 .hero {
   background: linear-gradient(120deg, #d6e8f7 0%, #e8f4fb 60%, #cce4f0 100%);
-  min-height: 320px;
+  min-height: 340px;
+  overflow: hidden;
 }
 
-/* Container interno do hero — igual ao da navbar */
 .hero__container {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 40px;
-  height: 100%;
-  min-height: 320px;
-
-  display: flex;            /* coloca texto e imagem lado a lado */
-  align-items: center;      /* alinha verticalmente ao centro */
-  justify-content: space-between; /* texto à esq, foto à dir */
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 40px;
 }
 
-/* ── Lado esquerdo: texto ── */
 .hero__texto {
-  flex: 1;                  /* ocupa o espaço disponível */
+  flex: 1;
   max-width: 460px;
 }
 
@@ -111,7 +118,7 @@ body {
 
 .hero__cta {
   background: #1a5fa8;
-  color: #ffffff;
+  color: #fff;
   border: none;
   padding: 14px 28px;
   border-radius: 6px;
@@ -126,17 +133,175 @@ body {
   transform: translateY(-1px);
 }
 
-/* ── Lado direito: imagem ── */
 .hero__imagem {
-  flex: 1;                  /* ocupa o mesmo espaço que o texto */
+  flex: 1;
   display: flex;
-  justify-content: flex-end; /* empurra a foto para a direita */
-  align-items: flex-end;     /* alinha a foto na base do banner */
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .hero__imagem img {
-  max-height: 300px;        /* altura máxima da foto */
-  max-width: 100%;          /* nunca ultrapassa o container */
-  object-fit: contain;      /* mantém a proporção original */
+  max-height: 320px;
+  max-width: 100%;
+  object-fit: contain;
   display: block;
+}
+
+
+/* ══════════════════════════════════════
+   SEÇÕES GENÉRICAS
+══════════════════════════════════════ */
+.secao {
+  padding: 60px 0;
+}
+
+.secao--cinza {
+  background: #f5f7fa;
+}
+
+.secao h2 {
+  font-size: 1.6rem;
+  color: #1a3d6b;
+  margin-bottom: 32px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid #1a5fa8;
+  display: inline-block;
+}
+
+
+/* ══════════════════════════════════════
+   CARDS — Sobre a Clínica
+══════════════════════════════════════ */
+.cards {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1;
+  min-width: 200px;
+  background: #ffffff;
+  border: 1px solid #dce6f0;
+  border-top: 4px solid #1a5fa8;
+  border-radius: 8px;
+  padding: 24px 20px;
+  font-weight: 700;
+  color: #1a3d6b;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+
+/* ══════════════════════════════════════
+   MÉDICOS — Especialidades
+══════════════════════════════════════ */
+.medicos {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.medico {
+  background: #ffffff;
+  border-left: 4px solid #2a9d6e;
+  padding: 14px 20px;
+  border-radius: 4px;
+  font-weight: 600;
+  color: #333;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+
+/* ══════════════════════════════════════
+   FORMULÁRIO — Agendamento
+══════════════════════════════════════ */
+.formulario {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 colunas lado a lado */
+  gap: 20px;
+}
+
+.formulario__grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Ocupa as 2 colunas (observações e botão) */
+.formulario__grupo--largo {
+  grid-column: 1 / -1;
+}
+
+.formulario__grupo label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1a3d6b;
+}
+
+.formulario__grupo input,
+.formulario__grupo select,
+.formulario__grupo textarea {
+  padding: 10px 14px;
+  border: 1px solid #c5d5e8;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.formulario__grupo input:focus,
+.formulario__grupo select:focus,
+.formulario__grupo textarea:focus {
+  border-color: #1a5fa8;
+}
+
+.formulario__btn {
+  background: #1a5fa8;
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.formulario__btn:hover {
+  background: #154d8c;
+  transform: translateY(-1px);
+}
+
+
+/* ══════════════════════════════════════
+   DEPOIMENTO
+══════════════════════════════════════ */
+.depoimento {
+  background: #ffffff;
+  border-left: 4px solid #1a5fa8;
+  padding: 20px 24px;
+  border-radius: 4px;
+  font-size: 1.05rem;
+  color: #555;
+  font-style: italic;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  max-width: 600px;
+}
+
+
+/* ══════════════════════════════════════
+   RODAPÉ
+══════════════════════════════════════ */
+.rodape {
+  background: #1a3d6b;
+  color: #ccdcf0;
+  padding: 32px 0;
+  text-align: center;
+}
+
+.rodape p {
+  margin-bottom: 6px;
+  font-size: 0.9rem;
 }
