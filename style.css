@@ -1,4 +1,28 @@
 /* ══════════════════════════════════════
+   TOPBAR — faixa azul escura no topo
+══════════════════════════════════════ */
+.topbar {
+  background: #1a3d6b;      /* azul escuro */
+  height: 36px;
+}
+
+.topbar__container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* informações alinhadas à direita */
+  gap: 32px;
+}
+
+.topbar__container span {
+  color: #ccdcf0;
+  font-size: 0.82rem;
+}
+
+/* ══════════════════════════════════════
    RESET
 ══════════════════════════════════════ */
 *, *::before, *::after {
@@ -92,26 +116,30 @@ body {
    HERO — banner principal
 ══════════════════════════════════════ */
 .hero {
-  background: linear-gradient(120deg, #d6e8f7 0%, #e8f4fb 60%, #cce4f0 100%);
-  overflow: hidden;         /* garante que a imagem não vaze */
+  
+  background-image: url('Imagens/image001.png');
+  background-size: cover;        /* cobre toda a área */
+  background-position: center;   /* centraliza a imagem */
+  background-repeat: no-repeat;
+  min-height: 420px;
 }
 
 .hero__container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 0 0 40px;      /* sem padding à direita — imagem cola na borda */
-  min-height: 340px;
+  padding: 0 40px;
+  min-height: 420px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 40px;
+  justify-content: flex-start;   /* texto alinhado à esquerda */
 }
 
-/* Texto à esquerda */
+/* Texto à esquerda sobre o banner */
 .hero__texto {
-  flex: 1;
-  max-width: 440px;
-  padding: 40px 0;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .hero__texto h1 {
@@ -141,17 +169,18 @@ body {
 /* Imagem à direita — colada na base e na borda */
 .hero__imagem {
   flex: 1;
-  align-self: stretch;      /* estica até a altura total do hero */
   display: flex;
-  align-items: flex-end;    /* foto alinhada na base */
+  align-items: flex-end;    /* cola foto na base */
   justify-content: flex-end;
+  /* Estica até a borda direita da tela usando vw */
+  width: calc(50vw);
+  margin-right: calc(-50vw + 50%);
   overflow: hidden;
 }
 
 .hero__imagem img {
-  height: 100%;             /* ocupa toda a altura do hero */
-  max-height: 340px;
-  width: auto;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: top center;
   display: block;
