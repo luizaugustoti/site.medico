@@ -116,7 +116,7 @@ body {
    HERO — banner principal
 ══════════════════════════════════════ */
 .hero {
-  
+  /* A imagem do banner já tem fundo + foto tudo junto */
   background-image: url('Imagens/image001.png');
   background-size: cover;        /* cobre toda a área */
   background-position: center;   /* centraliza a imagem */
@@ -336,4 +336,219 @@ body {
 .rodape p {
   margin-bottom: 6px;
   font-size: 0.9rem;
+}
+
+
+/* ══════════════════════════════════════
+   RESPONSIVO
+   Breakpoints:
+   - Tablet: até 1024px
+   - Celular: até 768px
+══════════════════════════════════════ */
+
+/* ── HAMBURGUER — escondido no desktop ── */
+.navbar__hamburguer {
+  display: none;            /* invisível no desktop */
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 100;
+}
+
+.navbar__hamburguer span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background: #1a5fa8;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Animação: ☰ vira X quando ativo */
+.navbar__hamburguer--ativo span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.navbar__hamburguer--ativo span:nth-child(2) {
+  opacity: 0;
+}
+.navbar__hamburguer--ativo span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+
+/* ════════════════════════════════
+   TABLET — até 1024px
+════════════════════════════════ */
+@media (max-width: 1024px) {
+
+  /* Topbar: só e-mail e telefone menores */
+  .topbar__container {
+    padding: 0 24px;
+    gap: 16px;
+  }
+
+  /* Navbar */
+  .navbar__container {
+    padding: 0 24px;
+  }
+
+  .navbar__links {
+    gap: 20px;
+  }
+
+  .navbar__links a {
+    font-size: 0.88rem;
+  }
+
+  .navbar__cta {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+
+  /* Hero */
+  .hero__container {
+    padding: 0 24px;
+  }
+
+  .hero__texto h1 {
+    font-size: 1.7rem;
+  }
+
+  /* Seções */
+  .secao__container {
+    padding: 0 24px;
+  }
+
+  /* Formulário: 2 colunas mantidas no tablet */
+}
+
+
+/* ════════════════════════════════
+   CELULAR — até 768px
+════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ── Topbar ── */
+  .topbar__container {
+    justify-content: center;
+    gap: 12px;
+    padding: 0 16px;
+  }
+
+  .topbar__container span {
+    font-size: 0.75rem;
+  }
+
+  /* ── Navbar ── */
+  .navbar {
+    height: auto;           /* altura flexível para abrir o menu */
+    position: relative;
+  }
+
+  .navbar__container {
+    padding: 0 16px;
+    height: 64px;
+    flex-wrap: wrap;        /* permite que o menu quebre para baixo */
+  }
+
+  /* Esconde o botão CTA e os links no mobile */
+  .navbar__cta {
+    display: none;
+  }
+
+  /* Mostra o botão hamburguer */
+  .navbar__hamburguer {
+    display: flex;
+  }
+
+  /* Menu fechado: escondido */
+  .navbar__links {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    width: 100%;
+    background: #ffffff;
+    border-top: 1px solid #eef2f7;
+    padding: 8px 0 16px;
+  }
+
+  /* Menu aberto: aparece */
+  .navbar__links--aberto {
+    display: flex;
+  }
+
+  .navbar__links li {
+    width: 100%;
+  }
+
+  .navbar__links a {
+    display: block;
+    padding: 12px 16px;
+    font-size: 1rem;
+    border-bottom: 1px solid #f0f4f8;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background-position: right center; /* foca no rosto no mobile */
+    min-height: 320px;
+  }
+
+  .hero__container {
+    padding: 40px 16px;
+    min-height: 320px;
+  }
+
+  .hero__texto {
+    max-width: 100%;
+  }
+
+  .hero__texto h1 {
+    font-size: 1.4rem;
+    color: #1a3d6b;
+    /* Sombra leve para o texto ficar legível sobre a foto */
+    text-shadow: 0 1px 6px rgba(255,255,255,0.8);
+  }
+
+  .hero__cta {
+    padding: 12px 22px;
+    font-size: 0.95rem;
+  }
+
+  /* ── Seções ── */
+  .secao__container {
+    padding: 0 16px;
+  }
+
+  .secao {
+    padding: 40px 0;
+  }
+
+  /* Cards empilhados */
+  .cards {
+    flex-direction: column;
+  }
+
+  .card {
+    min-width: unset;
+  }
+
+  /* Formulário: 1 coluna no mobile */
+  .formulario {
+    grid-template-columns: 1fr;
+  }
+
+  .formulario__grupo--largo {
+    grid-column: 1;
+  }
+
+  /* Rodapé */
+  .rodape {
+    padding: 24px 16px;
+  }
 }
