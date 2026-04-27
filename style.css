@@ -139,6 +139,10 @@ body {
   transition: background 0.2s;
 }
 
+css.hero__imagem img {
+  max-height: 300px;   /* ← aumente ou diminua a altura da foto */
+  object-fit: contain; /* mantém a proporção sem cortar */
+}
 .hero__cta:hover {
   background: #154d8c;
 }
