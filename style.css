@@ -13,17 +13,14 @@ body {
   background: #ffffff;
 }
 
-
 /* ══════════════════════════════════════
    UTILITÁRIO — container centralizado
-   Usado em todas as seções
 ══════════════════════════════════════ */
 .secao__container {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 40px;
 }
-
 
 /* ══════════════════════════════════════
    NAVBAR
@@ -44,8 +41,16 @@ body {
   justify-content: space-between;
 }
 
-.navbar__logo img {
-  display: block;
+/* Logo: ícone SVG + texto lado a lado */
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #1a5fa8;
+  font-size: 1.15rem;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .navbar__links {
@@ -83,20 +88,18 @@ body {
   transform: translateY(-1px);
 }
 
-
 /* ══════════════════════════════════════
    HERO — banner principal
 ══════════════════════════════════════ */
 .hero {
   background: linear-gradient(120deg, #d6e8f7 0%, #e8f4fb 60%, #cce4f0 100%);
-  min-height: 340px;
-  overflow: hidden;
+  overflow: hidden;         /* garante que a imagem não vaze */
 }
 
 .hero__container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 0 0 40px;      /* sem padding à direita — imagem cola na borda */
   min-height: 340px;
   display: flex;
   align-items: center;
@@ -104,9 +107,11 @@ body {
   gap: 40px;
 }
 
+/* Texto à esquerda */
 .hero__texto {
   flex: 1;
-  max-width: 460px;
+  max-width: 440px;
+  padding: 40px 0;
 }
 
 .hero__texto h1 {
@@ -133,20 +138,24 @@ body {
   transform: translateY(-1px);
 }
 
+/* Imagem à direita — colada na base e na borda */
 .hero__imagem {
   flex: 1;
+  align-self: stretch;      /* estica até a altura total do hero */
   display: flex;
+  align-items: flex-end;    /* foto alinhada na base */
   justify-content: flex-end;
-  align-items: flex-end;
+  overflow: hidden;
 }
 
 .hero__imagem img {
-  max-height: 800px;
-  max-width: 100%;
-  object-fit: contain;
+  height: 100%;             /* ocupa toda a altura do hero */
+  max-height: 340px;
+  width: auto;
+  object-fit: cover;
+  object-position: top center;
   display: block;
 }
-
 
 /* ══════════════════════════════════════
    SEÇÕES GENÉRICAS
@@ -167,7 +176,6 @@ body {
   border-bottom: 3px solid #1a5fa8;
   display: inline-block;
 }
-
 
 /* ══════════════════════════════════════
    CARDS — Sobre a Clínica
@@ -192,7 +200,6 @@ body {
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-
 /* ══════════════════════════════════════
    MÉDICOS — Especialidades
 ══════════════════════════════════════ */
@@ -212,13 +219,12 @@ body {
   box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
 
-
 /* ══════════════════════════════════════
    FORMULÁRIO — Agendamento
 ══════════════════════════════════════ */
 .formulario {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* 2 colunas lado a lado */
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 
@@ -228,7 +234,6 @@ body {
   gap: 6px;
 }
 
-/* Ocupa as 2 colunas (observações e botão) */
 .formulario__grupo--largo {
   grid-column: 1 / -1;
 }
@@ -274,7 +279,6 @@ body {
   transform: translateY(-1px);
 }
 
-
 /* ══════════════════════════════════════
    DEPOIMENTO
 ══════════════════════════════════════ */
@@ -289,7 +293,6 @@ body {
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   max-width: 600px;
 }
-
 
 /* ══════════════════════════════════════
    RODAPÉ
