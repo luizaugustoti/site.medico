@@ -1,38 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Clínica Médica</title>
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
- <!-- Barra azul superior -->
-<div class="barra-azul"></div>
 
-<!-- Barra branca com menu -->
-<header class="barra-branca">
-  <div class="logo">
-    <img src="Imagens/logo.png" alt="Logo Clínica Médica">
-    <span>Clínica Médica</span>
-  </div>
-  <nav class="menu">
-    <ul>
-      <li><a href="#inicio">Início</a></li>
-      <li><a href="#sobre">Sobre Nós</a></li>
-      <li><a href="#especialidades">Especialidades</a></li>
-      <li><a href="#profissionais">Profissionais</a></li>
-    </ul>
+  <!-- ════════ NAVBAR ════════ -->
+  <nav class="navbar">
+
+    <!--
+      navbar__container é o "miolo" da barra.
+      Ele tem largura máxima e fica centralizado.
+      A barra branca continua 100% da tela.
+    -->
+    <div class="navbar__container">
+
+      <!-- Logo -->
+      <a href="#" class="navbar__logo">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <circle cx="14" cy="14" r="14" fill="#1a5fa8"/>
+          <rect x="12" y="6" width="4" height="16" rx="2" fill="white"/>
+          <rect x="6" y="12" width="16" height="4" rx="2" fill="white"/>
+        </svg>
+        Clínica Médica
+      </a>
+
+      <!-- Links de navegação -->
+      <ul class="navbar__links">
+        <li><a href="#">Início</a></li>
+        <li><a href="#">Sobre Nós</a></li>
+        <li><a href="#">Especialidades</a></li>
+        <li><a href="#">Profissionais</a></li>
+      </ul>
+
+      <!-- Botão CTA -->
+      <button class="navbar__cta">Agende sua Consulta</button>
+
+    </div>
   </nav>
-  <button class="btn-consulta">Agende sua Consulta</button>
-</header>
 
-  <!-- Banner -->
-  <section id="inicio" class="banner">
-    <h1>Cuidando da sua saúde com dedicação e confiança</h1>
-    <button class="btn-primario">Agende sua Consulta</button>
-
+  <!-- ════════ HERO ════════ -->
+  <section class="hero">
+    <div class="hero__text">
+      <h1>Cuidando da sua saúde<br>com dedicação e confiança</h1>
+      <button class="hero__cta">Agende sua Consulta</button>
+    </div>
   </section>
+
+</body>
+</html>
 
   <!-- Sobre a Clínica -->
   <section id="sobre">
