@@ -47,7 +47,8 @@ body::before {
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   pointer-events: none;
-  z-index: 1000;
+  touch-action: none;
+  z-index: -1; /* FIX: era 1000 — ficava bloqueando toques no mobile */
   opacity: 0.5;
 }
 
@@ -171,11 +172,13 @@ nav {
   background: rgba(10, 10, 15, 0.7);
   z-index: 850;
   opacity: 0;
+  pointer-events: none; /* FIX: não intercepta toques quando inativo */
   transition: opacity 0.3s;
 }
 
 .nav-overlay.active {
   opacity: 1;
+  pointer-events: auto; /* FIX: só intercepta quando menu está aberto */
 }
 
 /* ── BOTÕES ── */
@@ -192,6 +195,8 @@ nav {
   text-decoration: none;
   border: none;
   cursor: pointer;
+  touch-action: manipulation; /* FIX: evita delay de 300ms no mobile */
+  -webkit-tap-highlight-color: transparent;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -521,6 +526,8 @@ h1.hero-title em {
   border-left: none;
   border-right: none;
   font-family: var(--mono);
+  touch-action: manipulation; /* FIX: evita delay no mobile */
+  -webkit-tap-highlight-color: transparent;
 }
 
 .card-btn:hover {
@@ -759,6 +766,11 @@ footer p {
   /* Overlay visível */
   .nav-overlay {
     display: block;
+    visibility: hidden; /* FIX: invisível e sem interceptar toques por padrão */
+  }
+
+  .nav-overlay.active {
+    visibility: visible;
   }
 
   /* Menu lateral deslizante */

@@ -50,6 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── SCROLL REVEAL ──
   const reveals = document.querySelectorAll('.reveal');
 
+  // FIX: threshold menor para mobile (elementos menores na tela)
+  // FIX: rootMargin para disparar antes do elemento sair da área visível
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry, i) => {
@@ -60,10 +62,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     },
-    { threshold: 0.15 }
+    { threshold: 0.05, rootMargin: '0px 0px -30px 0px' }
   );
 
   reveals.forEach((el) => observer.observe(el));
+
+  // FIX: fallback — após 1.5s força visibilidade de qualquer elemento
+  // que ainda não apareceu (evita botões invisíveis travados no mobile)
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+      el.style.transitionDelay = '0s';
+      el.classList.add('visible');
+    });
+  }, 1500);
 });
 
 // ── FORMULÁRIO ──
