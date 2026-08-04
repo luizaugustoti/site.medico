@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Kanban — Gestão Operacional de Frota</title>
+
+  <!-- Tipografia -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- TOPO DE CONTROLE -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">⬢</div>
+        <div class="brand-text">
+          <h1>Painel de Frota</h1>
+          <div class="brand-sub">CONTROLE DIÁRIO DE ESCALA E CADASTROS</div>
+        </div>
+      </div>
+
+      <div class="topbar-controls">
+        <!-- BOTÕES DE GESTÃO DE CADASTROS -->
+        <button class="btn btn-ghost" id="btnManageVeiculos">🚙 Veículos</button>
+        <button class="btn btn-ghost" id="btnManageMotoristas">👤 Motoristas</button>
+
+        <button id="themeToggleBtn" class="theme-toggle" type="button" title="Alternar tema">
+          <span id="themeIcon">🌙</span> <span id="themeLabel">Escuro</span>
+        </button>
+
+        <label class="date-field">
+          Data Operacional
+          <input type="date" id="inputDate">
+        </label>
+
+        <div class="conn-status" id="connStatus" data-state="offline" title="Status da conexão com a API Python">
+          <span class="dot"></span>
+          <span id="connLabel">Modo Local</span>
+        </div>
+
+        <button class="btn btn-ghost" id="btnSync">Atualizar Dados</button>
+      </div>
+    </header>
+
+    <!-- RESUMO DE KPIs -->
+    <section class="summary-bar" id="summaryBar">
+      <div class="summary-card">
+        <span class="label">Quadros / Equipamentos</span>
+        <span class="value" id="kpiTotalEquipes">0</span>
+      </div>
+      <div class="summary-card">
+        <span class="label">Total de Operações</span>
+        <span class="value accent" id="kpiTotalOperacoes">0</span>
+      </div>
+      <div class="summary-card">
+        <span class="label">Veículos Cadastrados</span>
+        <span class="value" id="kpiTotalVeiculosCadastrados">0</span>
+      </div>
+      <div class="summary-card">
+        <span class="label">Motoristas Cadastrados</span>
+        <span class="value" id="kpiTotalMotoristasCadastrados">0</span>
+      </div>
+    </section>
+
+    <!-- ÁREA KANBAN COM OS QUADROS COMPACTOS -->
+    <main class="panel">
+      <div class="panel-head">
+        <h2>
+          <span class="idx">01</span>
+          Escala de Veículos — Quadros de Operações
+        </h2>
+        <div class="panel-head-right">
+          <button class="btn btn-primary" id="btnAddEquipe">+ Novo Quadro / Equipamento</button>
+        </div>
+      </div>
+
+      <!-- Container Grid dos Quadros Kanban -->
+      <div class="kanban-grid" id="kanbanGrid"></div>
+    </main>
+
+    <footer class="statusbar">
+      Base de Dados: <code id="lblDataInfo">Escala de Veículos</code> | API Python: <code>http://localhost:8000/api</code>
+    </footer>
+  </div>
+
+  <!-- MODAL: CADASTRAR / EDITAR QUADRO KANBAN (COM SELEÇÃO DE VEÍCULO E MOTORISTA) -->
+  <dialog id="modalEquipe" class="modal">
+    <form method="dialog" class="modal-form" id="formEquipe">
+      <h3 id="modalEquipeTitle">Adicionar Quadro</h3>
+      <input type="hidden" id="eqId">
+
+      <div class="modal-grid">
+        <label style="grid-column: span 2;">
+          Nome / Equipamento *
+          <input type="text" id="eqNome" placeholder="Ex: Equipamento 1" required>
+        </label>
+
+        <!-- SELEÇÃO DE VEÍCULO DA LISTA -->
+        <label style="grid-column: span 2;">
+          Selecionar Veículo Cadastrado
+          <select id="selectVeiculo">
+            <option value="">-- Selecione para preencher automático --</option>
+          </select>
+        </label>
+
+        <label>
+          Tipo de Veículo *
+          <input type="text" id="eqTipo" placeholder="Ex: Fiorino, Van, Toco..." required>
+        </label>
+
+        <label>
+          Placa *
+          <input type="text" id="eqPlaca" placeholder="Ex: PBW-1658" required>
+        </label>
+
+        <!-- SELEÇÃO DE MOTORISTA DA LISTA -->
+        <label style="grid-column: span 2;">
+          Selecionar Motorista Cadastrado *
+          <select id="selectMotorista">
+            <option value="">-- Selecione um Motorista --</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="btnCancelEquipe">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Salvar Quadro</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- MODAL: GESTÃO DE CADASTRO DE VEÍCULOS -->
+  <dialog id="modalManageVeiculos" class="modal modal-large">
+    <div class="modal-form">
+      <h3>Cadastrar Novo Veículo</h3>
+      <form id="formCadVeiculo" class="modal-grid">
+        <label>
+          Tipo do Veículo *
+          <input type="text" id="cadTipoVeiculo" placeholder="Ex: Fiorino, Van, Toco" required>
+        </label>
+        <label>
+          Placa *
+          <input type="text" id="cadPlacaVeiculo" placeholder="Ex: PBW-1658" required>
+        </label>
+        <div style="grid-column: span 2; text-align: right;">
+          <button type="submit" class="btn btn-primary">+ Cadastrar Veículo</button>
+        </div>
+      </form>
+
+      <hr class="modal-divider">
+
+      <h3>Veículos Cadastrados</h3>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Tipo</th>
+              <th>Placa</th>
+              <th style="width: 60px;">Ação</th>
+            </tr>
+          </thead>
+          <tbody id="tblVeiculosBody"></tbody>
+        </table>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="btnCloseVeiculos">Fechar</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- MODAL: GESTÃO DE CADASTRO DE MOTORISTAS -->
+  <dialog id="modalManageMotoristas" class="modal modal-large">
+    <div class="modal-form">
+      <h3>Cadastrar Novo Motorista</h3>
+      <form id="formCadMotorista" class="modal-grid">
+        <label style="grid-column: span 2;">
+          Nome Completo do Motorista *
+          <input type="text" id="cadNomeMotorista" placeholder="Ex: Carlos Jorge" required>
+        </label>
+        <label style="grid-column: span 2;">
+          CPF
+          <input type="text" id="cadCpfMotorista" placeholder="Ex: 000.000.000-00">
+        </label>
+        <div style="grid-column: span 2; text-align: right;">
+          <button type="submit" class="btn btn-primary">+ Cadastrar Motorista</button>
+        </div>
+      </form>
+
+      <hr class="modal-divider">
+
+      <h3>Motoristas Cadastrados</h3>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>CPF</th>
+              <th style="width: 60px;">Ação</th>
+            </tr>
+          </thead>
+          <tbody id="tblMotoristasBody"></tbody>
+        </table>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="btnCloseMotoristas">Fechar</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- MODAL: CADASTRAR / EDITAR OPERAÇÃO -->
+  <dialog id="modalOperacao" class="modal">
+    <form method="dialog" class="modal-form" id="formOperacao">
+      <h3 id="modalOperacaoTitle">Adicionar Operação</h3>
+      <input type="hidden" id="opId">
+      <input type="hidden" id="opEquipeId">
+
+      <div class="modal-grid">
+        <label style="grid-column: span 2;">
+          Bloco de Operação
+          <select id="opBloco">
+            <option value="Primeira Operação">Primeira Operação</option>
+            <option value="Segunda Operação">Segunda Operação</option>
+            <option value="Terceira Operação">Terceira Operação</option>
+          </select>
+        </label>
+
+        <label style="grid-column: span 2;">
+          CT-e / Documento
+          <input type="text" id="opCte" placeholder="Ex: 12607 ou COLETA 43442">
+        </label>
+
+        <label>
+          Cliente
+          <input type="text" id="opCliente" placeholder="Ex: KM CARGO">
+        </label>
+
+        <label>
+          Destinatário
+          <input type="text" id="opDestinatario" placeholder="Ex: AMERICANAS">
+        </label>
+
+        <label style="grid-column: span 2;">
+          Horário Previsto
+          <input type="text" id="opHorario" placeholder="Ex: 08:00 ou 08AS17">
+        </label>
+
+        <div style="display: flex; gap: 16px; align-items: center; grid-column: span 2; margin-top: 6px;">
+          <label class="check-field">
+            <input type="checkbox" id="opRastreado"> Rastreado
+          </label>
+          <label class="check-field">
+            <input type="checkbox" id="opAjudante"> Ajudante
+          </label>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="btnCancelOperacao">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Salvar Operação</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>

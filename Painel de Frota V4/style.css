@@ -1,0 +1,372 @@
+/* ============================================================
+   Painel Kanban — Estilos e Temas (Claro e Escuro)
+   ============================================================ */
+
+/* Tema Escuro (Padrão) */
+:root, [data-theme="dark"] {
+  --ink: #0a0c0e;
+  --panel: #111418;
+  --panel-raised: #181c22;
+  --border: #242a33;
+  --border-soft: #1d222a;
+  
+  --text: #ffffff;
+  --text-dim: #9ca3af;
+  --text-faint: #6b7280;
+  
+  --green: #10b981;
+  --green-hover: #059669;
+  --green-dim: #064e3b;
+  --green-glow: rgba(16, 185, 129, 0.15);
+  
+  --red: #ef4444;
+  --bg-pattern: repeating-linear-gradient(90deg, rgba(255,255,255,0.01) 0px, rgba(255,255,255,0.01) 1px, transparent 1px, transparent 64px);
+  --modal-backdrop: rgba(0, 0, 0, 0.8);
+}
+
+/* Tema Claro */
+[data-theme="light"] {
+  --ink: #f8fafc;
+  --panel: #ffffff;
+  --panel-raised: #f1f5f9;
+  --border: #e2e8f0;
+  --border-soft: #cbd5e1;
+  
+  --text: #0f172a;
+  --text-dim: #475569;
+  --text-faint: #94a3b8;
+  
+  --green: #10b981;
+  --green-hover: #059669;
+  --green-dim: #d1fae5;
+  --green-glow: rgba(16, 185, 129, 0.12);
+  
+  --red: #dc2626;
+  --bg-pattern: repeating-linear-gradient(90deg, rgba(0,0,0,0.02) 0px, rgba(0,0,0,0.02) 1px, transparent 1px, transparent 64px);
+  --modal-backdrop: rgba(15, 23, 42, 0.5);
+}
+
+:root {
+  --radius: 6px;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --display: "Space Grotesk", sans-serif;
+  --sans: "Inter", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+body {
+  background-image:
+    linear-gradient(180deg, rgba(16,185,129,0.05), transparent 260px),
+    var(--bg-pattern);
+}
+
+.app { max-width: 1800px; margin: 0 auto; padding: 0 16px 40px; }
+
+/* ===== TOPO DE CONTROLE ===== */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-mark { font-size: 22px; color: var(--green); line-height: 1; }
+.brand-text h1 { font-family: var(--display); font-weight: 700; font-size: 18px; margin: 0; color: var(--text); }
+.brand-sub { font-size: 10px; color: var(--text-dim); font-family: var(--mono); letter-spacing: 0.05em; }
+
+.topbar-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+.date-field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 9px;
+  color: var(--text-dim);
+  font-family: var(--mono);
+  text-transform: uppercase;
+}
+
+.date-field input {
+  background: var(--panel-raised);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 5px 8px;
+  border-radius: var(--radius);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.conn-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--panel-raised);
+}
+
+.conn-status .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
+.conn-status[data-state="online"] .dot { background: var(--green); }
+
+/* ===== BOTÕES ===== */
+.btn {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+
+.btn-primary { background: var(--green); color: #000000; }
+.btn-primary:hover { background: var(--green-hover); color: #ffffff; }
+
+.btn-ghost { background: transparent; border-color: var(--border); color: var(--text-dim); }
+.btn-ghost:hover { border-color: var(--green); color: var(--text); }
+
+.btn-icon {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  width: 24px; height: 24px;
+  border-radius: var(--radius);
+  font-size: 11px;
+  cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.btn-icon:hover { border-color: var(--red); color: var(--red); }
+.btn-icon.edit:hover { border-color: var(--green); color: var(--green); }
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--panel-raised);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+/* ===== RESUMO ===== */
+.summary-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.summary-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  border-radius: var(--radius);
+}
+
+.summary-card .label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; color: var(--text-faint); display: block; margin-bottom: 4px; }
+.summary-card .value { font-family: var(--display); font-size: 18px; font-weight: 700; color: var(--text); }
+.summary-card .value.accent { color: var(--green); }
+
+/* ===== PAINEL KANBAN ===== */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.panel-head h2 { font-family: var(--display); font-size: 14px; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 8px; color: var(--text); }
+.panel-head .idx { font-family: var(--mono); font-size: 10px; color: var(--green); border: 1px solid var(--green); padding: 1px 5px; border-radius: 3px; }
+
+/* KANBAN GRID (DIMENSÕES COMPACTAS) */
+.kanban-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Largura reduzida para 250px */
+  gap: 12px; /* Espaçamento entre quadros reduzido */
+  align-items: start;
+}
+
+/* CARD KANBAN COMPACTO */
+.kanban-card {
+  background: var(--panel-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.kanban-header {
+  background: var(--ink);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 10px; /* Padding reduzido na altura */
+}
+
+.kanban-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.kanban-badge {
+  background: var(--green);
+  color: #000000;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 999px;
+}
+
+.kanban-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+.kanban-info-item strong {
+  color: var(--text-faint);
+  font-family: var(--mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 1px;
+}
+
+.kanban-body {
+  padding: 8px; /* Padding compacto */
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 40px; /* Altura mínima reduzida */
+}
+
+/* ITEM DE OPERAÇÃO COMPACTO */
+.op-item {
+  background: var(--panel);
+  border: 1px solid var(--border-soft);
+  border-radius: 5px;
+  padding: 6px 8px;
+  font-size: 11px;
+  transition: border-color 0.15s ease;
+}
+
+.op-item:hover { border-color: var(--green); }
+
+.op-bloco-tag {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 2px;
+  display: block;
+  font-weight: 600;
+}
+
+.op-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3px;
+  font-family: var(--mono);
+}
+
+.op-cte { font-weight: 600; font-size: 11px; color: var(--text); word-break: break-all; }
+.op-horario { color: var(--text-faint); font-size: 10px; white-space: nowrap; }
+
+.op-details { display: flex; flex-direction: column; gap: 1px; color: var(--text-dim); font-size: 11px; }
+.op-details span { color: var(--text); font-weight: 500; }
+
+.op-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+
+.pill {
+  font-family: var(--mono);
+  font-size: 9px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+
+.pill.yes { color: var(--green); border-color: var(--green); background: var(--green-glow); }
+.pill.info { color: var(--text); border-color: var(--border); background: var(--panel-raised); }
+
+.row-actions { display: flex; gap: 3px; }
+
+.kanban-footer {
+  padding: 6px 8px;
+  border-top: 1px solid var(--border-soft);
+  background: var(--panel-raised);
+}
+
+.kanban-footer .btn { padding: 4px 8px; font-size: 11px; }
+
+/* ===== TABELAS DE CADASTRO E MODAIS LARGOS ===== */
+.modal { border: 1px solid var(--border); border-radius: 8px; background: var(--panel); color: var(--text); padding: 0; width: min(480px, 92vw); }
+.modal.modal-large { width: min(600px, 94vw); }
+.modal::backdrop { background: var(--modal-backdrop); backdrop-filter: blur(3px); }
+.modal-form { padding: 16px; }
+.modal-form h3 { font-family: var(--display); margin: 0 0 12px; font-size: 14px; color: var(--text); }
+
+.modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.modal-grid label { display: flex; flex-direction: column; gap: 3px; font-size: 10px; color: var(--text-dim); font-family: var(--mono); text-transform: uppercase; }
+.modal-grid input, .modal-grid select {
+  background: var(--panel-raised);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 6px 8px;
+  border-radius: var(--radius);
+  font-family: var(--sans);
+  font-size: 12px;
+  text-transform: none;
+}
+
+.modal-divider { border: 0; border-top: 1px solid var(--border); margin: 16px 0; }
+
+.table-container { max-height: 200px; overflow-y: auto; border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: left; }
+.data-table th { background: var(--ink); color: var(--text-faint); font-family: var(--mono); font-size: 9px; text-transform: uppercase; padding: 6px 10px; border-bottom: 1px solid var(--border); position: sticky; top: 0; }
+.data-table td { padding: 6px 10px; border-bottom: 1px solid var(--border-soft); color: var(--text); }
+
+.check-field { flex-direction: row !important; align-items: center; gap: 6px !important; }
+.check-field input { width: 13px; height: 13px; accent-color: var(--green); }
+
+.modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border); }
+.statusbar { margin-top: 14px; font-family: var(--mono); font-size: 10px; color: var(--text-faint); }
+.statusbar code { background: var(--panel-raised); padding: 2px 5px; border-radius: 3px; color: var(--green); }
